@@ -1,0 +1,89 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The Electric Image Enlarger</title>
+	<link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+ {{>main}}
+</body>
+
+<template name='main'>
+	<div class='container'>
+			<div class="page-header">
+				<h1 class='text-center'>The Electric Image Enlarger<br>
+				<!-- <small>Get high resolution copies of your images</small> -->
+				<small>Doug Feigelson</small>
+				</h1>
+			</div>
+
+		<div class='row'>
+			<div class='col-md-6'>
+				<form action="http://ihmage.com/imageupload" class="dropzone" id="imgDropzone"></form>
+			</div>
+
+			<div class='col-md-6'>
+				<div class='dropzone'>
+					{{#each myImages}}
+						{{>result this}}
+					{{/each}}
+
+					{{#each missingImages}}
+						Loading...<br>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+
+		
+		<!-- Don't have an image? Test with this one now! <img src="/images/umbrellasmall.jpg" draggable="true"> -->
+<!-- 
+		<h2>Not your grandma’s image scaling</h2>
+		Image embiggener can take a low resolution image or thumbnail and retrieve a big, beautiful copy in seconds! Great for getting big product photos, big people photos, big logo images, and more. The service works by searching the web for matching images and returns the largest image available. Simply drop an image above to get started!
+
+		<h2>Big Images Increase Sales</h2>
+		Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+
+
+
+
+		<h3>Have a big little image problem?</h3>
+		<a href=''>Bulk Upload</a>	
+		<a href=''>API Access</a>
+
+
+		<br>
+		© Qugel LLC -->
+
+	</div>
+</template>
+
+
+<template name="result">
+	<a href={{this.bestImageUrl}} target="_blank">
+	<div class="dz-preview dz-success dz-image-preview hack-image-card">
+		<div class="dz-details">
+			{{#if this.bestImageUrl}}
+			<div class="dz-filename"><span></span></div>
+			<div class="dz-size">{{this.width}} x {{this.height}}</div>
+				<div class="cropper"><img src={{this.bestImageUrl}}></div>
+			{{else}}
+				<div class="dz-filename"><span>
+					{{#if this.missingHash}}
+					Loading...
+					{{else}}
+					No result.
+					{{/if}}
+				</span></div>
+				<div class="dz-size"></div>
+			{{/if}}
+		</div>
+		<div class="dz-progress"><span class="dz-upload"></span></div>
+		<!-- <div class="dz-success-mark"><span>✔</span></div> -->
+		<!-- <div class="dz-error-mark"><span>✘</span></div> -->
+		<div class="dz-error-message"><span></span></div>
+	</div>
+	</a>
+
+
+</template>

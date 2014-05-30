@@ -1,0 +1,8 @@
+{
+  "packages": {
+    "bootstrap-3": {},
+    "collection-api": {},
+    "crypto-md5": {},
+    "toastr": {}
+  }
+}
